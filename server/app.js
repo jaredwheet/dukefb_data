@@ -3,10 +3,15 @@ const mongoose = require("mongoose");
 const app = express();
 const cors = require("cors");
 require("dotenv").config();
+const init = require("./routes/init");
+
+let corsOrigin;
 
 // middleware
 const corsOptions = {
-  origin: "https://dukefbdata-client1.onrender.com", // frontend URI (ReactJS)
+  //   origin: "https://dukefbdata-client1.onrender.com",
+  origin: ["http://localhost:3000", "https://dukefbdata-client1.onrender.com"],
+  // frontend URI (ReactJS)
 };
 app.use(express.json());
 app.use(cors(corsOptions));
@@ -28,3 +33,4 @@ mongoose
 app.get("/", (req, res) => {
   res.status(201).json({ message: "Connected to Backend!" });
 });
+app.use("/init", init);
