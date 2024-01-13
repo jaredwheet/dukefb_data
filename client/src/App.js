@@ -14,7 +14,7 @@ function App() {
             <Route path="contact" element={<Contact />} />
           <Route path="*" element={<NoPage />} /> */}
           </Route>
-          <Route path="attendance" element={<Attendance />} />
+          <Route path="/attendance" element={<Attendance />} />
         </Routes>
       </BrowserRouter>
       {/* <Grid
