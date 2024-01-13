@@ -9,12 +9,11 @@ function App() {
       <Header></Header>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />}>
-            {/* <Route index element={<Home />} />
+          <Route path="/attendance" element={<Attendance />} />
+          <Route path="/" element={<Home />} />
+          {/* <Route index element={<Home />} />
             <Route path="contact" element={<Contact />} />
           <Route path="*" element={<NoPage />} /> */}
-          </Route>
-          <Route path="/attendance" element={<Attendance />} />
         </Routes>
       </BrowserRouter>
       {/* <Grid
