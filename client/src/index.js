@@ -20,6 +20,13 @@ const theme = createTheme({
       dark: "#262626",
       contrastText: "#000",
     },
+    typography: {
+      fontFamily: `"EB Garamond", Georgia, "Times New Roman", Times, serif`,
+      fontSize: 75,
+      fontWeightLight: 300,
+      fontWeightRegular: 400,
+      fontWeightMedium: 500,
+    },
   },
 });
 

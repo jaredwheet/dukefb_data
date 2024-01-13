@@ -3,8 +3,8 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
+// import IconButton from "@mui/material/IconButton";
+// import MenuIcon from "@mui/icons-material/Menu";
 import {
   Button,
   Drawer,
@@ -25,7 +25,7 @@ export default function Header() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             size="large"
             edge="start"
             color="inherit"
@@ -34,18 +34,29 @@ export default function Header() {
             onClick={() => setIsDrawerOpen(true)}
           >
             <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            FTW Data
+          </IconButton> */}
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{
+              flexGrow: 1,
+              fontFamily: `"EB Garamond", Georgia, "Times New Roman", Times, serif`,
+            }}
+          >
+            FTW
           </Typography>
 
-          <Button color="secondary" href="/attendance" component={Link}>
-            Attendance
+          <Button
+            color="secondary"
+            href="/attendance"
+            component={Link}
+            sx={{
+              fontFamily: `"EB Garamond", Georgia, "Times New Roman", Times, serif`,
+            }}
+          >
+            Attendance Data
           </Button>
 
-          <Button color="secondary" href="#" component={Link}>
-            Alumni
-          </Button>
           {/* <Typography variant="h6" component="div">
             FTW Data
           </Typography>
