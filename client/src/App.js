@@ -1,7 +1,7 @@
 import Header from "./Components/Header";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Components/Home";
-import Attendance from "./Components/Attendance";
+import Attendance from "./Components/Attendance.js";
 
 function App() {
   return (
