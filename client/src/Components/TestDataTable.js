@@ -43,6 +43,7 @@ const TestDataTable = (props) => {
     },
     {
       headerName: "Date",
+      type: "date",
       field: "startDate",
       valueGetter: (params) => {
         let gameDate = new Date(params.row.startDate);
@@ -86,7 +87,7 @@ const TestDataTable = (props) => {
     {
       field: "attendance",
       headerName: "Attendance",
-      width: 150,
+      width: 100,
     },
     {
       field: "theTemp",
@@ -110,7 +111,7 @@ const TestDataTable = (props) => {
       valueGetter: (params) => {
         return params.row.weather[0].weatherCondition;
       },
-      width: 200,
+      width: 175,
     },
     {
       headerName: "Final Score",
