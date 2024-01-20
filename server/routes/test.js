@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const cfb = require("cfb.js"); // Import the cfb package
+const mongoose = require("mongoose");
 const Game = require("../schema/game.schema"); // Import the Game model
 var defaultClient = cfb.ApiClient.instance;
 
@@ -28,7 +29,7 @@ async function fetchAllGames() {
       console.log(year, " API called successfully. Data:");
       dataArray.push(data); // Add data to array
 
-      await new Promise((resolve) => setTimeout(resolve, 5000)); // Wait 3 seconds
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait 3 seconds
     } catch (error) {
       console.error(`Error fetching games for year ${year}:`, error);
       // Handle the error gracefully, e.g., log it and continue with other years
@@ -56,7 +57,7 @@ async function getGamesWithWeather(games) {
         weather: weatherData, // Add weather data
       });
 
-      await new Promise((resolve) => setTimeout(resolve, 5000)); // Wait 3 seconds
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait 3 seconds
     } catch (error) {
       console.error(`Error fetching weather for game ${game.id}:`, error);
       // Handle the error gracefully, e.g., log it and potentially add the game without weather data
@@ -68,34 +69,12 @@ async function getGamesWithWeather(games) {
 
 router.get("/", async (req, res) => {
   try {
-    const games = await fetchAllGames();
-    const gamesWithWeather = await getGamesWithWeather(games);
-    console.log("games", gamesWithWeather);
-    await Promise.all(
-      gamesWithWeather.map(async (game) => {
-        try {
-          const existingGame = await Game.findOne({ id: game.id }); // Check for existing game
-
-          if (!existingGame) {
-            const newGame = new Game(game);
-            await newGame.save();
-            console.log(`Game ${game.id} saved successfully`);
-          } else {
-            console.log(`Game ${game.id} already exists, skipping`);
-          }
-        } catch (error) {
-          console.error(`Error saving game ${game.id}:`, error);
-          // Handle specific errors if needed (e.g., duplicate key errors)
-        }
-      })
-    );
-
-    // const gamesWithWeather = await getDukeGamesWithWeather();
-    res.json(gamesWithWeather[0]); // Send the results as JSON
+    const allEntries = await Game.find(); // Fetch all entries
+    res.json(allEntries); // Send the response as JSON
   } catch (error) {
     console.error(error);
-    res.status(500).send("Error fetching games with weather data");
+    res.status(500).send("Error fetching entries");
   }
 });
 
-module.exports = { fetchAllGames, getGamesWithWeather };
+module.exports = router;

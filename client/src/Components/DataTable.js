@@ -44,16 +44,6 @@ const DataTable = () => {
         },
 
         size: 1,
-        // accessorFn: (row) => {
-        //   let gameDate = new Date(row.startDate);
-        //   const options = {
-        //     weekday: "long",
-        //     year: "numeric",
-        //     month: "short",
-        //     day: "numeric",
-        //   };
-        //   return gameDate.toLocaleString("en-us", options);
-        // },
       },
       {
         header: "Start Time",
@@ -87,6 +77,14 @@ const DataTable = () => {
   const table = useMaterialReactTable({
     columns,
     data, //data must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
+    muiTableCellProps: {
+      //simple styling with the `sx` prop, works just like a style prop in this example
+      sx: {
+        fontWeight: "normal",
+        fontSize: "14px",
+        fontFamily: `"EB Garamond", Georgia, "Times New Roman", Times, serif`,
+      },
+    },
   });
 
   return (
