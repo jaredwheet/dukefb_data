@@ -3,11 +3,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Components/Home";
 import Attendance from "./Components/Attendance.js";
 import Test from "./Components/Test.js";
+import Footer from "./Components/Footer.js";
 
 function App() {
   return (
     <>
-      <Header></Header>
+      <Header />
       <BrowserRouter>
         <Routes>
           {/* <Route path="/" element={<Home />} />
@@ -24,6 +25,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      <Footer />
     </>
   );
 }

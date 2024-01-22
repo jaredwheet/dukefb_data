@@ -1,9 +1,20 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import dayjs from "dayjs";
 
 // import gameData from "../season_files/2001_2023";
 import { Grid } from "@mui/material";
+
+function sortByDate(a, b) {
+  return new Date(b) - new Date(a);
+}
+
+function sortByTime(a, b) {
+  const timeA = dayjs(a).format("HH:mm");
+  const timeB = dayjs(b).format("HH:mm");
+  return timeA.localeCompare(timeB);
+}
 
 const TestDataTable = (props) => {
   const { attendanceData } = props;
@@ -43,10 +54,10 @@ const TestDataTable = (props) => {
     },
     {
       headerName: "Date",
-      type: "date",
       field: "startDate",
-      valueGetter: (params) => {
-        let gameDate = new Date(params.row.startDate);
+      type: "dateTime",
+      valueFormatter: (params) => {
+        let gameDate = new Date(params.value);
         const options = {
           weekday: "long",
           year: "numeric",
@@ -55,19 +66,39 @@ const TestDataTable = (props) => {
         };
         return gameDate.toLocaleString("en-us", options);
       },
+      sortComparator: sortByDate,
+
       width: 200,
     },
     {
       field: "startTime",
       headerName: "Start Time",
       valueGetter: (params) => {
-        let gameDate = new Date(params.row.startDate);
+        return new Date(params.row.startDate);
+        // let gameDate = new Date(params.row.startDate);
+        // const options = {
+        //   hour: "2-digit",
+        //   minute: "2-digit",
+        // };
+        // return gameDate.toLocaleString("en-us", options);
+      },
+      valueFormatter: (params) => {
+        let gameDate = params.value;
         const options = {
           hour: "2-digit",
           minute: "2-digit",
         };
         return gameDate.toLocaleString("en-us", options);
       },
+      sortComparator: sortByTime,
+      //   valueFormatter: (params) => {
+      //     let gameDate = new Date(params.row.startDate);
+      //     const options = {
+      //       hour: "2-digit",
+      //       minute: "2-digit",
+      //     };
+      //     return gameDate.toLocaleString("en-us", options);
+      //   },
       width: 100,
     },
 
@@ -132,6 +163,7 @@ const TestDataTable = (props) => {
       <Grid item xs={10}>
         <Box sx={{ height: 800, width: "100%" }}>
           <DataGrid
+            components={{ Toolbar: GridToolbar }}
             rows={attendanceData}
             columns={columns}
             initialState={{
@@ -142,7 +174,6 @@ const TestDataTable = (props) => {
               },
             }}
             pageSizeOptions={[5]}
-            checkboxSelection
             disableRowSelectionOnClick
           />
         </Box>
