@@ -32,7 +32,7 @@ const cron = require("node-cron");
 const { fetchAllGames, getGamesWithWeather } = require("./api/apiCalls");
 
 // runs weekly to update mongodb
-cron.schedule("30 5 * * TUE", async () => {
+cron.schedule("0 3 * * 0", async () => {
   //  runs every Sunday at 3:00 AM
   console.log("Weekly cron job running - Sunday at 3:00 AM");
   // Your weekly task code goes here
