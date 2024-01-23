@@ -52,8 +52,8 @@ const Attendance = () => {
           }}
         >
           {" "}
-          Below you will find data on all Duke football games since 1888. The
-          database is not complete however, as some games are missing data
+          Below you will find data on Duke football games as far back as 1920.
+          The database is not complete however, as some games are missing data
           points. If you notice any errors, please{" "}
           <a href="mailto:ftwdatateam@gmail.com"> email us.</a>
         </Typography>
