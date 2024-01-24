@@ -2,6 +2,7 @@ import Grid from "@mui/material/Grid";
 import { useEffect, useState } from "react";
 import DataTable from "./DataTable";
 import { Typography } from "@mui/material";
+import ProgressSpinner from "./ProgressSpinner";
 
 let dataForTable = [];
 
@@ -25,7 +26,7 @@ const Attendance = () => {
         dataForTable = data;
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Empty dependency array to run only on mount
+  }, [attendanceData]); // Empty dependency array to run only on mount
 
   return (
     <Grid
@@ -38,17 +39,18 @@ const Attendance = () => {
           variant="h4"
           align="center"
           style={{
-            fontFamily: "EB Garamond, Georgia, Times New Roman, Times, serif",
+            fontFamily: "Sveningsson, Arial, serif",
           }}
         >
           {" "}
-          Duke Football Attendance
+          DUKE FOOTBALL DATA
         </Typography>
+        <br></br>
         <Typography
           variant="subtitle1"
           align="center"
           style={{
-            fontFamily: "EB Garamond, Georgia, Times New Roman, Times, serif",
+            fontFamily: "Sveningsson, Arial, serif",
           }}
         >
           This is intended to provide data on every Duke football game ever
@@ -62,7 +64,9 @@ const Attendance = () => {
           variant="subtitle1"
           align="center"
           style={{
-            fontFamily: "EB Garamond, Georgia, Times New Roman, Times, serif",
+            fontFamily: "Sveningsson, Arial, serif",
+            fontWeight: 100,
+            color: "#36454F",
           }}
         >
           Each column can be filtered and sorted based on your needs. You may
@@ -70,7 +74,8 @@ const Attendance = () => {
         </Typography>
       </Grid>
       <Grid item xs={12} sx={{ marginTop: "10px" }}>
-        {attendanceData && <DataTable attendanceData={dataForTable} />}
+        {!!attendanceData && <DataTable attendanceData={dataForTable} />}
+        {!attendanceData && <ProgressSpinner />}
       </Grid>
     </Grid>
   );

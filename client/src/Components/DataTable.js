@@ -20,14 +20,14 @@ const DataTable = (props) => {
   const { attendanceData } = props;
 
   const columns = [
-    { field: "id", headerName: "ID", width: 100 },
+    { field: "id", headerName: "ID", width: 100, hide: true },
     {
       field: "season",
       headerName: "Season",
       width: 90,
     },
     {
-      field: "homeOrAway",
+      field: "awayTeam",
       headerName: "Home/Away",
       width: 90,
       valueGetter: (params) => {
@@ -40,7 +40,7 @@ const DataTable = (props) => {
     },
 
     {
-      field: "awayTeam",
+      field: "awayTeam:opponent",
       headerName: "Opponent",
       width: 150,
       valueGetter: (params) => {
@@ -53,7 +53,7 @@ const DataTable = (props) => {
     },
     {
       headerName: "Day",
-      field: "dayOfWeek",
+      field: "startDate:dayOfWeek",
       valueGetter: (params) => {
         let gameDate = new Date(params.row.startDate);
         const day = gameDate.getDay();
@@ -95,7 +95,7 @@ const DataTable = (props) => {
       width: 150,
     },
     {
-      field: "startTime",
+      field: "startDate:time",
       headerName: "Start Time",
       valueGetter: (params) => {
         return new Date(params.row.startDate);
@@ -129,7 +129,7 @@ const DataTable = (props) => {
     },
     {
       field: "theTemp",
-      headerName: "Temperature",
+      headerName: "Temp (F)",
       valueGetter: (params) => {
         return params.row.weather[0]?.temperature
           ? params.row.weather[0]?.temperature
@@ -149,7 +149,7 @@ const DataTable = (props) => {
     },
     {
       headerName: "Final Score (D - Opp)",
-      width: 90,
+      width: 100,
       valueGetter: (params) => {
         if (params.row.homeTeam.toLowerCase() === "duke") {
           return `${params.row.homePoints} - ${params.row.awayPoints}`;
@@ -160,38 +160,44 @@ const DataTable = (props) => {
     },
   ];
 
+  const generateRowKey = (row) => row.id;
+
   return (
     <Grid container>
       <Grid item xs={1} />
       <Grid item xs={10}>
-        <Box sx={{ height: 800, width: "100%" }}>
-          <DataGrid
-            components={{
-              Toolbar: GridToolbar,
-            }}
-            // sx={{
-            //   "& .MuiDataGrid-root": {
-            //     fontFamily: `"EB Garamond", Georgia, "Times New Roman", Times, serif`, // Apply to the entire DataGrid
-            //   },
-            //   "& .MuiDataGrid-cell, & .MuiDataGrid-headerCell": {
-            //     fontFamily: `"EB Garamond", Georgia, "Times New Roman", Times, serif`, // Apply to cells and header cells
-            //   },
-            // }}
-            rows={attendanceData}
-            columns={columns}
-            initialState={{
-              sorting: {
-                sortModel: [{ field: "startDate", sort: "asc" }],
-              },
-              pagination: {
-                paginationModel: {
-                  pageSize: 5,
+        <Box sx={{ width: "100%" }}>
+          {!!attendanceData.length && (
+            <DataGrid
+              style={{ height: "60vh" }}
+              getRowId={generateRowKey}
+              components={{
+                Toolbar: GridToolbar,
+              }}
+              // sx={{
+              //   "& .MuiDataGrid-root": {
+              //     fontFamily: `"EB Garamond", Georgia, "Times New Roman", Times, serif`, // Apply to the entire DataGrid
+              //   },
+              //   "& .MuiDataGrid-cell, & .MuiDataGrid-headerCell": {
+              //     fontFamily: `"EB Garamond", Georgia, "Times New Roman", Times, serif`, // Apply to cells and header cells
+              //   },
+              // }}
+              rows={attendanceData}
+              columns={columns}
+              initialState={{
+                sorting: {
+                  sortModel: [{ field: "startDate", sort: "asc" }],
                 },
-              },
-            }}
-            pageSizeOptions={[5]}
-            disableRowSelectionOnClick
-          />
+                pagination: {
+                  paginationModel: {
+                    pageSize: 5,
+                  },
+                },
+              }}
+              pageSizeOptions={[5]}
+              disableRowSelectionOnClick
+            />
+          )}
         </Box>
       </Grid>
     </Grid>

@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.root {
+  flex: 1;
+}
+
+.footer {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  /* Optional for styling: */
+  padding: 1rem;
+  background-color: red !important;
+}

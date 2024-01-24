@@ -21,7 +21,7 @@ const theme = createTheme({
       contrastText: "#000",
     },
     typography: {
-      fontFamily: `"EB Garamond", Georgia, "Times New Roman", Times, serif`,
+      fontFamily: "Sveningsson, Arial, serif",
       fontSize: 75,
       fontWeightLight: 300,
       fontWeightRegular: 400,

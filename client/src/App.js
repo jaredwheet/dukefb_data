@@ -9,22 +9,24 @@ function App() {
   return (
     <>
       <Header />
-      <BrowserRouter>
-        <Routes>
-          {/* <Route path="/" element={<Home />} />
+      <div className="main-wrapper">
+        <BrowserRouter>
+          <Routes>
+            {/* <Route path="/" element={<Home />} />
           <Route path="/attendance" element={<Attendance />} />
           <Route path="/test" element={<Test />} /> */}
-          {/* <Route index element={<Home />} />
+            {/* <Route index element={<Home />} />
             <Route path="contact" element={<Contact />} />
           <Route path="*" element={<NoPage />} /> */}
-          <Route path="/">
-            <Route index element={<Home />} />
-            <Route path="attendance" element={<Attendance />} />
-            <Route path="test" element={<Test />} />
-            {/* <Route path="contact" element={<Contact />} /> */}
-          </Route>
-        </Routes>
-      </BrowserRouter>
+            <Route path="/">
+              <Route index element={<Home />} />
+              <Route path="attendance" element={<Attendance />} />
+              <Route path="test" element={<Test />} />
+              {/* <Route path="contact" element={<Contact />} /> */}
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
       <Footer />
     </>
   );
