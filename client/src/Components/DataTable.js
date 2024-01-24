@@ -155,6 +155,9 @@ const DataTable = (props) => {
             rows={attendanceData}
             columns={columns}
             initialState={{
+              sorting: {
+                sortModel: [{ field: "season", sort: "desc" }],
+              },
               pagination: {
                 paginationModel: {
                   pageSize: 5,

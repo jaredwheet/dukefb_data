@@ -51,11 +51,22 @@ const Attendance = () => {
             fontFamily: "EB Garamond, Georgia, Times New Roman, Times, serif",
           }}
         >
-          {" "}
-          Below you will find data on Duke football games as far back as 1920.
-          The database is not complete however, as some games are missing data
-          points. If you notice any errors, please{" "}
+          This is intended to provide data on every Duke football game ever
+          played, however at this point there is a lot of missing data,
+          especially in the early years. If you notice any errors, or think you
+          can help complete the missing information, please{" "}
           <a href="mailto:ftwdatateam@gmail.com"> email us.</a>
+        </Typography>
+        <br></br>
+        <Typography
+          variant="subtitle1"
+          align="center"
+          style={{
+            fontFamily: "EB Garamond, Georgia, Times New Roman, Times, serif",
+          }}
+        >
+          Each column can be filtered and sorted based on your needs. You may
+          also use the export button to download the data as a CSV file.
         </Typography>
       </Grid>
       <Grid item xs={12} sx={{ marginTop: "10px" }}>
