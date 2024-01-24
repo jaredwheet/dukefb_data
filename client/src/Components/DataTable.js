@@ -169,7 +169,9 @@ const DataTable = (props) => {
         <Box sx={{ width: "100%" }}>
           {!!attendanceData.length && (
             <DataGrid
-              style={{ height: "60vh" }}
+              style={{
+                height: "60vh",
+              }}
               getRowId={generateRowKey}
               components={{
                 Toolbar: GridToolbar,
