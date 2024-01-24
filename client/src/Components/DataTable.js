@@ -52,13 +52,38 @@ const DataTable = (props) => {
       },
     },
     {
+      headerName: "Day",
+      field: "dayOfWeek",
+      valueGetter: (params) => {
+        let gameDate = new Date(params.row.startDate);
+        const day = gameDate.getDay();
+        if (day === 0) {
+          return "Sunday";
+        } else if (day === 1) {
+          return "Monday";
+        } else if (day === 2) {
+          return "Tuesday";
+        } else if (day === 3) {
+          return "Wednesday";
+        } else if (day === 4) {
+          return "Thursday";
+        } else if (day === 5) {
+          return "Friday";
+        } else if (day === 6) {
+          return "Saturday";
+        }
+      },
+
+      width: 100,
+    },
+    {
       headerName: "Date",
       field: "startDate",
       type: "dateTime",
       valueFormatter: (params) => {
         let gameDate = new Date(params.value);
         const options = {
-          weekday: "long",
+          // weekday: "long",
           year: "numeric",
           month: "short",
           day: "numeric",
@@ -67,7 +92,7 @@ const DataTable = (props) => {
       },
       sortComparator: sortByDate,
 
-      width: 200,
+      width: 150,
     },
     {
       field: "startTime",
@@ -100,7 +125,7 @@ const DataTable = (props) => {
           ? params.row.weather[0]?.weatherCondition
           : "";
       },
-      width: 175,
+      width: 145,
     },
     {
       field: "theTemp",
@@ -156,7 +181,7 @@ const DataTable = (props) => {
             columns={columns}
             initialState={{
               sorting: {
-                sortModel: [{ field: "season", sort: "desc" }],
+                sortModel: [{ field: "startDate", sort: "asc" }],
               },
               pagination: {
                 paginationModel: {
