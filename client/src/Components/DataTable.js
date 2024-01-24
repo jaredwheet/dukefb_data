@@ -96,7 +96,9 @@ const DataTable = (props) => {
       field: "weatherCondition",
       headerName: "Weather Condition",
       valueGetter: (params) => {
-        return params.row.weather[0].weatherCondition;
+        return params.row.weather[0]?.weatherCondition
+          ? params.row.weather[0]?.weatherCondition
+          : "";
       },
       width: 175,
     },
@@ -104,7 +106,9 @@ const DataTable = (props) => {
       field: "theTemp",
       headerName: "Temperature",
       valueGetter: (params) => {
-        return params.row.weather[0].temperature;
+        return params.row.weather[0]?.temperature
+          ? params.row.weather[0]?.temperature
+          : "";
       },
       width: 100,
     },
@@ -112,7 +116,9 @@ const DataTable = (props) => {
       field: "humidity",
       headerName: "Humidity",
       valueGetter: (params) => {
-        return `${params.row.weather[0].humidity}%`;
+        return params.row.weather[0]?.humidity
+          ? params.row.weather[0]?.humidity
+          : "";
       },
       width: 100,
     },
