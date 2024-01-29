@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
-mongoose.connect(
-  "mongodb+srv://app:UxvYzW1loGRiOFKL@cluster0.icwa9s6.mongodb.net/?retryWrites=true&w=majority"
-);
+mongoose.connect("URI HERE");
 const XLSX = require("xlsx");
 
 const Game = require("../schema/game.schema"); // Import the Game model
